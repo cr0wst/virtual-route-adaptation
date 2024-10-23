@@ -1,8 +1,8 @@
 import { ApolloClient, gql, InMemoryCache } from "@apollo/client/core";
-import { GRAPHQL_API_URL } from "$env/static/private";
+import { PUBLIC_GRAPHQL_API_URL } from "$env/static/public";
 
 const client = new ApolloClient({
-  uri: GRAPHQL_API_URL,
+  uri: PUBLIC_GRAPHQL_API_URL,
   cache: new InMemoryCache(),
 });
 
