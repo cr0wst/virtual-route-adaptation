@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e64d581d-17b9-48d7-9a59-67883b575fb3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.github/workflows/deploy-server.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/.npmrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/.prettierignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/.prettierrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/postcss.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/app.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/app.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/app.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/lib/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/routes/+layout.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/routes/+page.server.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/routes/+page.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/routes/routes/+page.server.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/routes/routes/+page.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/static/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/svelte.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/tailwind.config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/vite.config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/jest.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/resources/ADAR.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/schema.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/adar.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/flightPlan.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/logger.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/utils.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/types.ts" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+        <option value="ModeToggle" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2nfAdYBeanRh8wL9P1vz1PfbiZZ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Jest.convertAdarRecordToRouteRecord.executor": "Run",
+    "Jest.convertAdarRecordToRouteRecord.should convert an ADAR record with multiple arrivals and departures to a route record.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/Users/crow/Code/virtual-route-adaptation/.github/workflows",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "/Users/crow/Code/virtual-route-adaptation/node_modules/jest",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/crow/Code/virtual-route-adaptation/node_modules/prettier",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "ts.external.directory.path": "/Users/crow/Code/virtual-route-adaptation/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.github/workflows" />
+      <recent name="$PROJECT_DIR$/client/src/routes" />
+      <recent name="$PROJECT_DIR$/client" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.github/workflows" />
+      <recent name="$PROJECT_DIR$/client/src/routes/routes" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/server" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Jest.convertAdarRecordToRouteRecord.should convert an ADAR record with multiple arrivals and departures to a route record">
+    <configuration name="convertAdarRecordToRouteRecord" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/tests/adar.test.ts" />
+      <test-names>
+        <test-name value="convertAdarRecordToRouteRecord" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="convertAdarRecordToRouteRecord.should convert an ADAR record with multiple arrivals and departures to a route record" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/tests/adar.test.ts" />
+      <test-names>
+        <test-name value="convertAdarRecordToRouteRecord" />
+        <test-name value="should convert an ADAR record with multiple arrivals and departures to a route record" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Jest.convertAdarRecordToRouteRecord.should convert an ADAR record with multiple arrivals and departures to a route record" />
+        <item itemvalue="Jest.convertAdarRecordToRouteRecord" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e64d581d-17b9-48d7-9a59-67883b575fb3" name="Changes" comment="" />
+      <created>1729353845485</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1729353845485</updated>
+      <workItem from="1729353848148" duration="9096000" />
+      <workItem from="1729456919522" duration="28046000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
