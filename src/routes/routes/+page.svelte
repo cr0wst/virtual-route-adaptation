@@ -3,7 +3,7 @@
 </script>
 
 <!-- Routes Grid -->
-<div class="grid grid-cols-3 gap-6">
+<div class="grid lg:grid-cols-3 grid-cols-1 gap-6">
   {#each data.routes as route}
     <div
       class="rounded-lg border border-gray-300 bg-gray-100 p-6 shadow-md dark:border-gray-700 dark:bg-gray-800"
