@@ -4,6 +4,10 @@
   let { children } = $props();
 </script>
 
+<svelte:head>
+  <title>Virtual Route Adaptation</title>
+</svelte:head>
+
 <div class="flex min-h-screen flex-col">
   <!-- Navbar -->
   <nav
