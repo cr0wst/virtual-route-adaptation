@@ -1,61 +1,53 @@
 <script lang="ts">
+  import RouteCard from "$lib/components/RouteCard.svelte";
+  import { derived } from "svelte/store";
+
   let { data } = $props();
+
+  let filter = $state()
+
+  let filteredRoutes = $derived.by(() => {
+    if (!filter) return data.routes;
+
+    // Split the filter by spaces to get possible ICAO codes
+    let terms = filter.trim().split(/\s+/);
+    let departureFilter = terms[0].toLowerCase(); // First term
+    let arrivalFilter = terms[1]?.toLowerCase();  // Second term, if available
+
+    return data.routes.filter(route => {
+      // If only one term is provided, check both departures and arrivals
+      if (!arrivalFilter) {
+        return (
+          route.departures.some(departure => departure.toLowerCase().includes(departureFilter)) ||
+          route.arrivals.some(arrival => arrival.toLowerCase().includes(departureFilter)) ||
+          route.route.string.toLowerCase().includes(departureFilter) ||
+          route.id.toLowerCase().includes(departureFilter)
+        );
+      }
+
+      // If two terms are provided, check departure for the first and arrival for the second
+      return (
+        route.departures.some(departure => departure.toLowerCase().includes(departureFilter)) &&
+        route.arrivals.some(arrival => arrival.toLowerCase().includes(arrivalFilter))
+      );
+    });
+  });
+
 </script>
+
+<!-- Filter Panel -->
+<div class="flex justify-between items-center w-full mb-2">
+  <input type="text" id="filter"
+         class="border border-gray-300 rounded-md p-3 text-gray-700 dark:bg-gray-700 dark:text-gray-200 w-full"
+         placeholder="Search..."
+         bind:value={filter}
+  />
+</div>
+
 
 <!-- Routes Grid -->
 <div class="grid lg:grid-cols-3 grid-cols-1 gap-6">
-  {#each data.routes as route}
-    <div
-      class="rounded-lg border border-gray-300 bg-gray-100 p-6 shadow-md dark:border-gray-700 dark:bg-gray-800"
-    >
-      <!-- Route Header (ID and Badge) -->
-      <div
-        class="text-gray-1000 mb-3 flex items-center justify-between text-lg font-semibold dark:text-gray-200"
-      >
-        {route.id}
-        <span
-          class="rounded bg-green-600 px-2.5 py-0.5 text-xs font-semibold text-gray-100"
-        >
-          ADAR DB
-        </span>
-      </div>
-
-      <!-- Departures and Arrivals -->
-      <div class="text-sm text-gray-800 dark:text-gray-300">
-        <span class="font-semibold">Departure:</span>
-        {route.departures.join(", ")}
-      </div>
-
-      <div class="mt-1 text-sm text-gray-800 dark:text-gray-300">
-        <span class="font-semibold">Arrival:</span>
-        {route.arrivals.join(", ")}
-      </div>
-
-      <!-- Altitudes -->
-      <div class="mt-1 text-sm text-gray-800 dark:text-gray-300">
-        <span class="font-semibold">Altitudes:</span>
-        {route.altitudes.min} - {route.altitudes.max}
-      </div>
-
-      <!-- Route String -->
-      <div
-        class="mt-3 rounded-md bg-gray-200 p-3 font-mono text-sm text-gray-700 dark:bg-gray-700 dark:text-gray-200"
-      >
-        {route.route.string}
-      </div>
-
-      <!-- Criteria Badges (if exists) -->
-      {#if route.criteria.length > 0}
-        <div class="mt-2 flex flex-wrap gap-2">
-          {#each route.criteria as c}
-            <span
-              class="rounded bg-blue-700 px-2.5 py-0.5 text-xs font-medium text-gray-100 dark:bg-blue-600 dark:text-gray-100"
-            >
-              {c.id}
-            </span>
-          {/each}
-        </div>
-      {/if}
-    </div>
+  {#each filteredRoutes as route}
+    <RouteCard {route} />
   {/each}
 </div>
