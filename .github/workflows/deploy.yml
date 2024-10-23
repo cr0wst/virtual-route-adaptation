@@ -9,6 +9,8 @@ on:
 
 jobs:
   build-and-deploy:
+    env:
+      PUBLIC_GRAPHQL_API_URL: "https://api.vra.stevecrow.dev"
     runs-on: ubuntu-latest
 
     strategy:
