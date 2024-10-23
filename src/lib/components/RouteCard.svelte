@@ -14,7 +14,7 @@
     class="text-gray-1000 mb-3 flex items-center justify-between text-lg font-semibold dark:text-gray-200"
   >
     {route.id}
-    <SourcePill label="ADAR"/>
+    <SourcePill label="ADAR" />
   </div>
 
   <!-- Departures and Arrivals -->
@@ -35,13 +35,13 @@
   </div>
 
   <!-- Route String -->
-  <Route label="{route.route.string}"/>
+  <Route route={route.route.string} />
 
   <!-- Criteria Badges (if exists) -->
   {#if route.criteria.length > 0}
     <div class="mt-2 flex flex-wrap gap-2">
       {#each route.criteria as c}
-        <CriteriaPill label="{c.id}"/>
+        <CriteriaPill label={c.id} />
       {/each}
     </div>
   {/if}
