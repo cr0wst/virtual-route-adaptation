@@ -1,189 +1,121 @@
 <script lang="ts">
   import FlightPlanCard from "$lib/components/FlightPlanCard.svelte";
+  import { invalidate } from "$app/navigation";
+  import { onMount } from "svelte";
   import { derived } from "svelte/store";
+  import { FLIGHT_PLAN_CACHE_DURATION } from "$lib/utils";
 
   let { data } = $props();
 
-  let { pilots, prefiles } = data;
+  let shownAirports = $state([]);
 
-  const ZID_AIRPORTS = [
-    "KEKX",
-    "KAMT",
-    "KAID",
-    "KDWU",
-    "KHLB",
-    "KEDJ",
-    "KSJS",
-    "KLEX",
-    "KUSW",
-    "KTZR",
-    "KLOU",
-    "KGEO",
-    "KHAO",
-    "KFFT",
-    "KCUL",
-    "KRGA",
-    "KLUK",
-    "KCVG",
-    "KJVY",
-    "KBAK",
-    "KRSV",
-    "KCFJ",
-    "KVES",
-    "KDCY",
-    "KMGY",
-    "KMIE",
-    "KDLZ",
-    "KEYE",
-    "KPRG",
-    "KEVV",
-    "KLHQ",
-    "KFGX",
-    "KSER",
-    "KFRH",
-    "KGAS",
-    "KFTK",
-    "KPMH",
-    "KEHR",
-    "KHOC",
-    "KHBE",
-    "KHNB",
-    "KTYQ",
-    "KIND",
-    "KUMP",
-    "KMQJ",
-    "KHFY",
-    "KJRO",
-    "KDAY",
-    "KCMH",
-    "KJKL",
-    "KSME",
-    "KCQA",
-    "KHTW",
-    "KLWV",
-    "KAOH",
-    "KLOZ",
-    "KLNP",
-    "KSDF",
-    "KUYF",
-    "KIMS",
-    "KBLF",
-    "KCEV",
-    "KOXD",
-    "KPKB",
-    "KMWO",
-    "KBMG",
-    "KSYM",
-    "KAJG",
-    "KIOB",
-    "KAXV",
-    "KUWL",
-    "KVTA",
-    "KOVO",
-    "KJQD",
-    "KOSU",
-    "KUNI",
-    "KOWB",
-    "KTEL",
-    "KCYO",
-    "KEOP",
-    "KPBX",
-    "KGFD",
-    "KGPC",
-    "KBKW",
-    "KRID",
-    "KLCK",
-    "KRZT",
-    "KBRY",
-    "KSCX",
-    "KGEZ",
-    "KSCA",
-    "KEBD",
-    "KSGH",
-    "KDVK",
-    "KTWT",
-    "KSIV",
-    "KSXL",
-    "KAAS",
-    "KHUF",
-    "KHTS",
-    "KMRT",
-    "KBFR",
-    "KEKQ",
-    "KCPF",
-    "KCRW",
-    "KBYL",
-    "KILN",
-    "KFFO",
-    "KZZV",
-  ];
+  let { arrivals, departures, prefiles } = $derived(data);
 
-  const filteredPilots = pilots.filter((p) => {
-    // Flight plan needs to exist, be IFR, and have a departure and arrival airport in ZID
-    return (
-      p.flight_plan &&
-      p.flight_plan.flight_rules === "I" &&
-      (ZID_AIRPORTS.includes(p.flight_plan.departure) ||
-        ZID_AIRPORTS.includes(p.flight_plan.arrival))
+  let airports = $derived.by(() => {
+    const a = new Set([
+      ...departures.map((pilot) => pilot.flight_plan.departure),
+      ...arrivals.map((pilot) => pilot.flight_plan.arrival),
+    ]);
+
+    return Array.from(a);
+  });
+
+  let filteredDepartures = $derived.by(() => {
+    return departures.filter((pilot) =>
+      shownAirports.includes(pilot.flight_plan.departure),
     );
   });
 
-  const filteredPrefiles = prefiles.filter((p) => {
-    // Flight plan needs to exist, be IFR, and have a departure and arrival airport in ZID
-    return (
-      p.flight_plan &&
-      p.flight_plan.flight_rules === "I" &&
-      (ZID_AIRPORTS.includes(p.flight_plan.departure) ||
-        ZID_AIRPORTS.includes(p.flight_plan.arrival))
+  let filteredArrivals = $derived.by(() => {
+    return arrivals.filter((pilot) =>
+      shownAirports.includes(pilot.flight_plan.arrival),
     );
   });
 
-  let arrivals = $derived(
-    filteredPilots.filter((p) => ZID_AIRPORTS.includes(p.flight_plan.arrival)),
-  );
+  onMount(() => {
+    shownAirports = airports;
+    const interval = setInterval(() => {
+      invalidate("/api/flight-plan");
+    }, FLIGHT_PLAN_CACHE_DURATION);
 
-  let departures = $derived(
-    filteredPilots.filter((p) =>
-      ZID_AIRPORTS.includes(p.flight_plan.departure),
-    ),
-  );
+    return () => clearInterval(interval);
+  });
+
+  function toggleShownAirport(airport: string) {
+    if (shownAirports.includes(airport)) {
+      shownAirports = shownAirports.filter((a) => a !== airport);
+    } else {
+      shownAirports = [...shownAirports, airport];
+    }
+  }
 </script>
 
-<div class="flex flex-col gap-2 pb-2">
-  <h2 class="text-2xl font-bold text-gray-700">Departures</h2>
-  <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
-    {#each departures as pilot}
-      <FlightPlanCard
-        flightPlan={pilot.flight_plan}
-        cid={pilot.cid}
-        callsign={pilot.callsign}
-      />
-    {/each}
-  </div>
+<div class="w-full border-b">
+  <h1 class="pb-2 text-3xl font-bold text-gray-700 dark:text-white">
+    Current Flights
+  </h1>
+</div>
+<div class="flex gap-2 border-b py-2">
+  {#each airports as airport}
+    <button
+      class="rounded border border-orange-600 px-2.5 py-0.5 text-xs font-medium dark:border-blue-600
+  {shownAirports.includes(airport)
+        ? 'bg-orange-600 text-white dark:bg-blue-600'
+        : 'text-orange-300 dark:text-blue-300'}"
+      onclick={() => toggleShownAirport(airport)}
+    >
+      {airport}
+    </button>
+  {/each}
 </div>
 
-<div class="flex flex-col gap-2 pb-2">
-  <h2 class="text-2xl font-bold text-gray-700">Arrivals</h2>
-  <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
-    {#each arrivals as pilot}
-      <FlightPlanCard
-        flightPlan={pilot.flight_plan}
-        cid={pilot.cid}
-        callsign={pilot.callsign}
-      />
-    {/each}
+{#if filteredDepartures.length > 0}
+  <div class="flex flex-col gap-2 pb-2">
+    <h2 class="py-2 text-2xl font-semibold text-gray-700 dark:text-white">
+      Departures ({filteredDepartures.length})
+    </h2>
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      {#each filteredDepartures as pilot}
+        <FlightPlanCard
+          flightPlan={pilot.flight_plan}
+          cid={pilot.cid}
+          callsign={pilot.callsign}
+        />
+      {/each}
+    </div>
   </div>
-</div>
+{/if}
 
-<div class="flex flex-col gap-2">
-  <h2 class="text-2xl font-bold text-gray-700">Pre-files</h2>
-  <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
-    {#each filteredPrefiles as pilot}
-      <FlightPlanCard
-        flightPlan={pilot.flight_plan}
-        cid={pilot.cid}
-        callsign={pilot.callsign}
-      />
-    {/each}
+{#if filteredArrivals.length > 0}
+  <div class="flex flex-col gap-2 pb-2">
+    <h2 class="py-2 text-2xl font-semibold text-gray-700 dark:text-white">
+      Arrivals ({filteredArrivals.length})
+    </h2>
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      {#each filteredArrivals as pilot}
+        <FlightPlanCard
+          flightPlan={pilot.flight_plan}
+          cid={pilot.cid}
+          callsign={pilot.callsign}
+        />
+      {/each}
+    </div>
   </div>
-</div>
+{/if}
+
+{#if prefiles.length > 0}
+  <div class="flex flex-col gap-2">
+    <h2 class="py-2 text-2xl font-semibold text-gray-700 dark:text-white">
+      Pre-files ({prefiles.length})
+    </h2>
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      {#each prefiles as pilot}
+        <FlightPlanCard
+          flightPlan={pilot.flight_plan}
+          cid={pilot.cid}
+          callsign={pilot.callsign}
+        />
+      {/each}
+    </div>
+  </div>
+{/if}
