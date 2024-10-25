@@ -27,6 +27,7 @@ function applyFilters(pilots: Pilot[]) {
       p.flight_plan.flight_rules === "I" &&
       (ZID_AIRPORTS.includes(p.flight_plan.departure) ||
         ZID_AIRPORTS.includes(p.flight_plan.arrival)) &&
+      p.flight_plan.altitude &&
       !p.flight_plan.altitude.includes("VFR")
     );
   });
