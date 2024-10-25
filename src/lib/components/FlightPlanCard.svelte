@@ -1,8 +1,14 @@
 <script lang="ts">
   import Route from "$lib/components/Route.svelte";
   import Remarks from "$lib/components/Remarks.svelte";
+  import CriteriaPill from "$lib/components/CriteriaPill.svelte";
+  import SourcePill from "$lib/components/SourcePill.svelte";
 
-  let { callsign, cid, flightPlan } = $props();
+  let { callsign, cid, flightPlan } = $props<{
+    callsign: string;
+    cid: string;
+    flightPlan: any;
+  }>();
 </script>
 
 <div

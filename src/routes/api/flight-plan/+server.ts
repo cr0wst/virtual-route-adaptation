@@ -2,18 +2,35 @@ import { json } from "@sveltejs/kit";
 import { ZID_AIRPORTS } from "$lib/utils";
 import type { Pilot } from "$lib/types";
 import { fetchFlightPlanData } from "$lib/server/flightPlanCache";
+import { fetchSuggestions } from "$lib/apolloClient";
 
 export const GET = async () => {
   const { pilots, prefiles } = await fetchFlightPlanData();
 
+  let filteredPilots = applyFilters(pilots);
+  let filteredPrefiles = applyFilters(prefiles);
+
+  // Fetch all the suggestions and filter out pilots or prefiles that don't have any.
+  // for the ones that do have them, add the suggestions to the object.
+  const suggestions = await Promise.all(
+    filteredPilots
+      .concat(filteredPrefiles)
+      .map((p) => fetchSuggestions(p.flight_plan)),
+  );
+
+  filteredPilots = filteredPilots.map((p, i) => ({
+    ...p,
+    suggestions: suggestions[i],
+  }));
+
+  filteredPrefiles = filteredPrefiles.map((p, i) => ({
+    ...p,
+    suggestions: suggestions[i + filteredPilots.length],
+  }));
+
   return json({
-    arrivals: applyFilters(pilots).filter((p) =>
-      ZID_AIRPORTS.includes(p.flight_plan.arrival),
-    ),
-    departures: applyFilters(pilots).filter((p) =>
-      ZID_AIRPORTS.includes(p.flight_plan.departure),
-    ),
-    prefiles: applyFilters(prefiles),
+    pilots: filteredPilots,
+    prefiles: filteredPrefiles,
   });
 };
 

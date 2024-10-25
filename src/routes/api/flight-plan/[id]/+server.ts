@@ -1,7 +1,5 @@
 import { json } from "@sveltejs/kit";
-import { ZID_AIRPORTS } from "$lib/utils";
 import { fetchFlightPlanData } from "$lib/server/flightPlanCache";
-import type { Pilot } from "$lib/types";
 import { fetchSuggestions } from "$lib/apolloClient";
 
 export const GET = async ({ params }) => {
