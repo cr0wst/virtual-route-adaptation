@@ -1,5 +1,4 @@
 <script lang="ts">
-  import SourcePill from "$lib/components/SourcePill.svelte";
   import Route from "$lib/components/Route.svelte";
   import Remarks from "$lib/components/Remarks.svelte";
 
@@ -7,7 +6,7 @@
 </script>
 
 <div
-  class="rounded-lg border border-gray-300 bg-gray-100 p-6 shadow-md dark:border-gray-700 dark:bg-gray-800"
+  class="rounded-lg border border-gray-300 bg-gray-100 p-6 shadow-md dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
 >
   <!-- Route Header (ID and Badge) -->
   <div
@@ -35,14 +34,14 @@
 
   <div class="flex items-center justify-between border-y border-gray-200 p-2">
     <div class="mt-1 text-sm text-gray-800 dark:text-gray-300">
-      <span class="font-semibold">Altitude:</span>
+      <span class=" font-semibold uppercase text-gray-600">Altitude</span>
       {flightPlan.altitude > 18000
         ? `FL${flightPlan.altitude / 100}`
         : flightPlan.altitude}
     </div>
 
     <div class="mt-1 text-sm text-gray-800 dark:text-gray-300">
-      <span class="font-semibold">Aircraft:</span>
+      <span class=" font-semibold uppercase text-gray-600">Aircraft</span>
       {flightPlan.aircraft_faa}
     </div>
   </div>

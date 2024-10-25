@@ -76,11 +76,19 @@
     </h2>
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
       {#each filteredDepartures as pilot}
-        <FlightPlanCard
-          flightPlan={pilot.flight_plan}
-          cid={pilot.cid}
-          callsign={pilot.callsign}
-        />
+        <a
+          class="flex flex-col items-stretch transition ease-in hover:drop-shadow-lg"
+          href={`/${pilot.callsign}/analyze`}
+        >
+          <div class="grid-col-1 grid min-h-full flex-grow">
+            <FlightPlanCard
+              class="min-h-full flex-grow"
+              flightPlan={pilot.flight_plan}
+              cid={pilot.cid}
+              callsign={pilot.callsign}
+            />
+          </div>
+        </a>
       {/each}
     </div>
   </div>
@@ -93,11 +101,19 @@
     </h2>
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
       {#each filteredArrivals as pilot}
-        <FlightPlanCard
-          flightPlan={pilot.flight_plan}
-          cid={pilot.cid}
-          callsign={pilot.callsign}
-        />
+        <a
+          class="flex flex-col items-stretch transition ease-in hover:drop-shadow-lg"
+          href={`/${pilot.callsign}/analyze`}
+        >
+          <div class="grid-col-1 grid min-h-full flex-grow">
+            <FlightPlanCard
+              class="min-h-full flex-grow"
+              flightPlan={pilot.flight_plan}
+              cid={pilot.cid}
+              callsign={pilot.callsign}
+            />
+          </div>
+        </a>
       {/each}
     </div>
   </div>
@@ -110,11 +126,19 @@
     </h2>
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
       {#each prefiles as pilot}
-        <FlightPlanCard
-          flightPlan={pilot.flight_plan}
-          cid={pilot.cid}
-          callsign={pilot.callsign}
-        />
+        <a
+          class="flex flex-col items-stretch transition ease-in hover:drop-shadow-lg"
+          href={`/${pilot.callsign}/analyze`}
+        >
+          <div class="grid-col-1 grid min-h-full flex-grow">
+            <FlightPlanCard
+              class="min-h-full flex-grow"
+              flightPlan={pilot.flight_plan}
+              cid={pilot.cid}
+              callsign={pilot.callsign}
+            />
+          </div>
+        </a>
       {/each}
     </div>
   </div>

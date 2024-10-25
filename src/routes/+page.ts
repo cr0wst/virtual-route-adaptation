@@ -1,5 +1,5 @@
-import type { PageData } from "./$types";
+import type { Load } from "@sveltejs/kit";
 
-export const load: PageData = async ({ params, fetch }) => {
+export const load: Load = async ({ params, fetch }) => {
   return await fetch("/api/flight-plan").then((r) => r.json());
 };

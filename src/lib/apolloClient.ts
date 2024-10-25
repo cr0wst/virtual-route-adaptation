@@ -37,3 +37,39 @@ export async function fetchRoutes() {
 
   return response.data.routes;
 }
+
+export async function fetchSuggestions(flightPlan) {
+  // Extract only the required fields for the query
+  const filteredFlightPlan = {
+    aircraft: flightPlan.aircraft,
+    departure: flightPlan.departure,
+    arrival: flightPlan.arrival,
+    altitude: flightPlan.altitude,
+    route: flightPlan.route,
+    remarks: flightPlan.remarks,
+  };
+
+  const response = await client.query({
+    query: gql`
+      query AdaptFlightPlanRoute($flightPlan: FlightPlanInput!) {
+        suggestFlightPlanRoutes(flightPlan: $flightPlan) {
+          reason
+          route {
+            arrival
+            departure
+            string
+          }
+          altitude
+          criteria {
+            id
+          }
+        }
+      }
+    `,
+    variables: {
+      flightPlan: filteredFlightPlan,
+    },
+  });
+
+  return response.data.suggestFlightPlanRoutes || [];
+}
