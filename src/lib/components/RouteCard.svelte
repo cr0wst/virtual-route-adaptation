@@ -35,7 +35,7 @@
   </div>
 
   <!-- Route String -->
-  <Route route={route.route.string} />
+  <Route route={route.route} />
 
   <!-- Criteria Badges (if exists) -->
   {#if route.criteria.length > 0}

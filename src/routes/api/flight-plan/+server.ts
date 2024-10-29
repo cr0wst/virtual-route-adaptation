@@ -20,12 +20,12 @@ export const GET = async () => {
 
   filteredPilots = filteredPilots.map((p, i) => ({
     ...p,
-    suggestions: suggestions[i],
+    suggestion: suggestions[i],
   }));
 
   filteredPrefiles = filteredPrefiles.map((p, i) => ({
     ...p,
-    suggestions: suggestions[i + filteredPilots.length],
+    suggestion: suggestions[i + filteredPilots.length],
   }));
 
   return json({

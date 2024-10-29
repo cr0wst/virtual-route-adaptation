@@ -10,18 +10,13 @@
   </h2>
   <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
     {#each pilots as pilot}
-      <a
+      <div
         class="flex flex-col items-stretch transition ease-in hover:drop-shadow-lg"
-        href={`/${pilot.callsign}/analyze`}
       >
         <div class="grid-col-1 grid min-h-full flex-grow">
-          <FlightPlanCard
-            flightPlan={pilot.flight_plan}
-            cid={pilot.cid}
-            callsign={pilot.callsign}
-          />
+          <FlightPlanCard flightPlan={pilot.flight_plan} {pilot} />
         </div>
-      </a>
+      </div>
     {/each}
   </div>
 </div>

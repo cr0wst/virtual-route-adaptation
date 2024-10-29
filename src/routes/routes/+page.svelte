@@ -24,7 +24,7 @@
           route.arrivals.some((arrival) =>
             arrival.toLowerCase().includes(departureFilter),
           ) ||
-          route.route.string.toLowerCase().includes(departureFilter) ||
+          route.route.toLowerCase().includes(departureFilter) ||
           route.id.toLowerCase().includes(departureFilter)
         );
       }

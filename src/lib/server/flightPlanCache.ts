@@ -1,7 +1,7 @@
 import { FLIGHT_PLAN_CACHE_DURATION } from "$lib/utils";
 import type { Pilot } from "$lib/types";
 
-let FLIGHT_PLAN_CACHE = null;
+let FLIGHT_PLAN_CACHE: any = null;
 
 export async function fetchFlightPlanData(): Promise<{
   pilots: Pilot[];
@@ -21,6 +21,7 @@ export async function fetchFlightPlanData(): Promise<{
         callsign: "FLC314",
         name: "Test PIlot",
         flight_plan: {
+          aircraft_faa: "C172/G",
           flight_rules: "I",
           departure: "KCMH",
           arrival: "KBWI",
@@ -35,7 +36,7 @@ export async function fetchFlightPlanData(): Promise<{
         callsign: "FLC320",
         name: "Good Test PIlot",
         flight_plan: {
-          aircraft: "B77L/H-SDE1E2E3FGHIJ2J3J4J5M1RWXY/LB1D1",
+          aircraft_faa: "C172/G",
           flight_rules: "I",
           departure: "KCVG",
           arrival: "KBKL",
@@ -49,6 +50,7 @@ export async function fetchFlightPlanData(): Promise<{
         callsign: "FLC315",
         name: "Test PIlot Plus One",
         flight_plan: {
+          aircraft_faa: "C172/G",
           flight_rules: "I",
           departure: "KBWI",
           arrival: "KCMH",
@@ -67,7 +69,7 @@ export async function fetchFlightPlanData(): Promise<{
         callsign: "FLC321",
         name: "Bad Test PIlot",
         flight_plan: {
-          aircraft: "B77L/H-SDE1E2E3FGHIJ2J3J4J5M1RWXY/LB1D1",
+          aircraft_faa: "C172/G",
           flight_rules: "I",
           departure: "KLUK",
           arrival: "KSDF",
@@ -81,12 +83,12 @@ export async function fetchFlightPlanData(): Promise<{
         callsign: "FLC316",
         name: "Test PIlot Plus Two",
         flight_plan: {
+          aircraft_faa: "C172/G",
           flight_rules: "I",
           departure: "KCMH",
           arrival: "KBWI",
           altitude: "35000",
-          route:
-            "KCMH VHP J29 AIR J110 FAK J110 MOL J110 BAE J110 ETX J110 BROSS J110 OTWAY J110 BUNTS J110 SIE CAMRN3 KBWI",
+          route: "OWEBO DCT NUSMM ANTHM3",
           remarks: "RMK/TEST FLIGHT PLAN (DEBUG ONLY)",
         },
       },
@@ -95,6 +97,7 @@ export async function fetchFlightPlanData(): Promise<{
         callsign: "FLC317",
         name: "Test PIlot Plus Three",
         flight_plan: {
+          aircraft_faa: "C172/G",
           flight_rules: "I",
           departure: "KBWI",
           arrival: "KCMH",

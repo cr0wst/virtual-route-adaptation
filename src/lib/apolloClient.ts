@@ -12,24 +12,17 @@ export async function fetchRoutes() {
       query GetRoutes {
         routes {
           id
+          route
+          departures
+          arrivals
           altitudes {
             min
             max
           }
           criteria {
             id
+            priority
           }
-          route {
-            string
-            arrival
-            departure
-            fixes {
-              id
-              icaoCode
-            }
-          }
-          arrivals
-          departures
         }
       }
     `,
@@ -38,10 +31,10 @@ export async function fetchRoutes() {
   return response.data.routes;
 }
 
-export async function fetchSuggestions(flightPlan) {
+export async function fetchSuggestions(flightPlan: any) {
   // Extract only the required fields for the query
   const filteredFlightPlan = {
-    aircraft: flightPlan.aircraft,
+    aircraft: flightPlan.aircraft_faa,
     departure: flightPlan.departure,
     arrival: flightPlan.arrival,
     altitude: flightPlan.altitude,
@@ -52,17 +45,8 @@ export async function fetchSuggestions(flightPlan) {
   const response = await client.query({
     query: gql`
       query AdaptFlightPlanRoute($flightPlan: FlightPlanInput!) {
-        suggestFlightPlanRoutes(flightPlan: $flightPlan) {
-          reason
-          route {
-            arrival
-            departure
-            string
-          }
-          altitude
-          criteria {
-            id
-          }
+        suggestion(flightPlan: $flightPlan) {
+          route
         }
       }
     `,
@@ -71,5 +55,5 @@ export async function fetchSuggestions(flightPlan) {
     },
   });
 
-  return response.data.suggestFlightPlanRoutes || [];
+  return response.data.suggestion || [];
 }

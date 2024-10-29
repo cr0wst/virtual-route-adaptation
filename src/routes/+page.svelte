@@ -5,7 +5,7 @@
   import FlightPlanCardStack from "$lib/components/FlightPlanCardStack.svelte";
   import type { Pilot } from "$lib/types";
 
-  type PilotWithSuggestions = Pilot & { suggestions: any[] };
+  type PilotWithSuggestions = Pilot & { suggestion: { route: string } };
 
   let { data } = $props<{
     data: {
@@ -20,14 +20,14 @@
   let filteredPilots = $derived.by(() => {
     return pilots.filter(
       (pilot: PilotWithSuggestions) =>
-        pilot.suggestions && pilot.suggestions.length > 0,
+        pilot.suggestion && pilot.suggestion.route,
     );
   });
 
   let filteredPrefiles = $derived.by(() => {
     return prefiles.filter(
       (pilot: PilotWithSuggestions) =>
-        pilot.suggestions && pilot.suggestions.length > 0,
+        pilot.suggestion && pilot.suggestion.route,
     );
   });
 
